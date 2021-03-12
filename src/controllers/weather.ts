@@ -6,7 +6,7 @@ import { Weather } from "../models/Weather";
  * @route GET /weather/data
  */
 export const getWeatherData = async (req: Request, res: Response): Promise<void> => {
-    let {lat , lon} = req.query; 
+    const {lat , lon} = req.query; 
 
     const nearestLoc = await Weather.where("location").near({
             center: {
@@ -28,5 +28,5 @@ export const getWeatherData = async (req: Request, res: Response): Promise<void>
  * @route GET /weather/summarize
  */
 export const getWeatherSummarize = (req: Request, res: Response): void => {
-   
+    res.send("");
 };
