@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { MONGODB_URI } from "./util/secrets";
 import bluebird from "bluebird";
 
+
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
 
@@ -16,23 +17,22 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
 });
 
 // const test: IWeather = {
-//     location: {type: "Point", coordinates: [-122.5,37.7]},
+//     location: {type: "Point", coordinates: [-120.0,35.0]},
 //     forecastTime : new Date(),
-//     precipitation : 4.5,
-//     temperature: 17.6
-
+//     precipitation : 6.5,
+//     temperature: 7.6
 // };
 
 // const loc = new Weather(test);
 
-// Weather.findOne({
-//     $nearSphere: {
-//         $geometry: {
-//            type: "Point" ,
-//            coordinates: [ -122, 37 ]
-//         }
-//       }
-// }).explain("queryPlanner").then(doc => console.log(doc)).catch(e => console.log(e));
+// const res =  Weather.where("location").near({
+//     center: {
+//         type: "Point",
+//         coordinates: [-122, 37]
+//     }
+// }).then(doc => console.log(JSON.stringify(doc))).catch(e => console.log(e));
+
+
 
 // loc.save(function (err) {
 //     if (err) console.log(err);});

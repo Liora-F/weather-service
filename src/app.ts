@@ -1,10 +1,9 @@
 import express from "express";
-import compression from "compression";  // compresses requests
-import bodyParser from "body-parser";
 import path from "path";
 import mongoose from "mongoose";
 import bluebird from "bluebird";
 import { MONGODB_URI } from "./util/secrets";
+import * as watherController from "./controllers/weather";
 
 // Create Express server
 const app = express();
@@ -24,20 +23,15 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
-app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 
 app.use(
     express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
 );
 
 /**
- * Primary app routes.
+ * Routes.
  */
-// app.get("/", homeController.index);
-// app.get("/login", userController.getLogin);
-app.get("/liora", (req, res) => res.send("liora"));
+app.get("/weather/data", watherController.getWeatherData);
+app.get("/weather/summarize", watherController.getWeatherSummarize);
 
 export default app;
