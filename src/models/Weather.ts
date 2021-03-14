@@ -22,7 +22,7 @@ const pointSchema = new mongoose.Schema<PointDocument>({
       required: true
     },
     coordinates: {
-      type: [Number],
+      type: [Number], //[lon,lag]
       required: true
     }
   });
@@ -42,5 +42,5 @@ const WeatherSchema = new mongoose.Schema<WeatherDocument>(
 );
 
 
-export const Weather = mongoose.model<WeatherDocument>("Weather", WeatherSchema);
+export const Weather = mongoose.model<WeatherDocument>("Weather2", WeatherSchema);
 
