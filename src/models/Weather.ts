@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-var Float = require("mongoose-float").loadType(mongoose, 2);
+const Float = require("mongoose-float").loadType(mongoose, 2);
 
 interface IPoint {
   type: string;

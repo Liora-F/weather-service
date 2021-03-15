@@ -51,8 +51,8 @@ async function loadToDB(filePath: string) {
     }
   };
 
-  let csvParseStream = createCsvParseStream();
-  let readStream = fs.createReadStream(filePath).pipe(csvParseStream);
+  const csvParseStream = createCsvParseStream();
+  const readStream = fs.createReadStream(filePath).pipe(csvParseStream);
 
   for await (const data of readStream) {
     buffer.push(data);
