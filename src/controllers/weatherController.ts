@@ -37,8 +37,12 @@ function getCoordinatesFromRequest(req: Request): number[] {
   const lat = parseFloat(req.query.lat?.toString());
   const lon = parseFloat(req.query.lon?.toString());
 
-  if (isNaN(lon) || isNaN(lat)) {
-    throw new Error("error in parameters, 'lat' and 'lon' should be numbers");
+  if (!assertValidCoordinates(lat, lon)) {
+    throw new Error("error in parameters, 'lat' and 'lon' should be numbers respectively in range [-90,90] and [-180,180]");
   }
   return [lon, lat];
+}
+
+function assertValidCoordinates(lat: number, lon:number): boolean{
+    return -90<=lat && lat<=90 && -180<=lon && lon<=180;
 }

@@ -1,3 +1,4 @@
+import { Aggregate } from "mongoose";
 import Weather from "../models/Weather";
 
 export default class WeatherService {
@@ -24,7 +25,7 @@ export default class WeatherService {
     return result;
   }
 
-  private static getNearestPointWeatherAggregation(coordinates: number[]) {
+  private static getNearestPointWeatherAggregation(coordinates: number[]): Aggregate<any[]>{
     return Weather.aggregate([WeatherService.buildGeoNearClause(coordinates)])
       .limit(100)
       .group({
